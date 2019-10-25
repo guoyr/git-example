@@ -6,7 +6,7 @@ CONSTANT N, P
 (*
 --algorithm jobstatus {
 
-variables jobModCounts = [1..N -> 0], savedModCounts = [1..N -> 0], availableJobs = 0;
+variables jobModCounts = {0 : x \in 1..N}, savedModCounts = {0 : x \in 1..N}, availableJobs = 0;
 
 macro lock(job) {
     jobModCounts[job] := jobModCounts[job] + 1;
@@ -64,8 +64,8 @@ vars == << jobModCounts, savedModCounts, availableJobs, pc >>
 ProcSet == (1..P) \cup (P..N)
 
 Init == (* Global variables *)
-        /\ jobModCounts = [1..N -> 0]
-        /\ savedModCounts = [1..N -> 0]
+        /\ jobModCounts = {0 : x \in 1..N}
+        /\ savedModCounts = {0 : x \in 1..N}
         /\ availableJobs = 0
         /\ pc = [self \in ProcSet |-> CASE self \in 1..P -> "p1"
                                         [] self \in P..N -> "r0"]
@@ -129,5 +129,5 @@ Termination == <>(\A self \in ProcSet: pc[self] = "Done")
 \* END TRANSLATION
 =============================================================================
 \* Modification History
-\* Last modified Fri Oct 25 07:25:39 EDT 2019 by guo
+\* Last modified Fri Oct 25 07:30:48 EDT 2019 by guo
 \* Created Fri Oct 25 03:25:07 EDT 2019 by guo

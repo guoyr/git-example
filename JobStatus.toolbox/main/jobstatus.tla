@@ -1,73 +1,133 @@
 ----------------------------- MODULE jobstatus -----------------------------
-EXTENDS Naturals, Sequences, TLC, Integers
+EXTENDS Naturals, Sequences, TLC
 
-Put(s) == Append(s, "widget")
-
-Get(s) == Tail (s)
+CONSTANT N, P
 
 (*
---algorithm Alternate {
+--algorithm jobstatus {
 
-    variable b = 0; box = <<>> ;
+variables jobModCounts = {0 : x \in 1..N}, savedModCounts = {0 : x \in 1..N}, availableJobs = 0;
 
-    process ( Producer = 0 )
+macro lock(job) {
+    jobModCounts[job] := jobModCounts[job] + 1;
+};
 
-    { p1: while ( TRUE )
+macro save(job) {
+    assert savedModCounts[job] \in <<jobModCounts[job], jobModCounts[job] - 1>>;
+    savedModCounts[job] := jobModCounts[job];
+};
 
-        { await b = 0 ;
-
-            box := Put(box) ;
-
-            b := 1
-
-        }
-
-    }
-
-    fair process ( Consumer = 1 )
-
-    { c1: while ( TRUE )
-
-        { await b = 1 ;
-
-            box := Get(box) ;
-
-            b := 0
-
-        }
-
-    }
-
+macro put(job) {
+    savedModCounts[job] := 0;
+    jobModCounts[job] := 0;
 }
+
+process (producer \in 1..P) {
+p1:
+  print << "here" >>;
+p2:
+  while (TRUE) {
+    await availableJobs < N;
+p3:    
+    put(self);
+p4:    
+    availableJobs := availableJobs - 1;
+  }
+}
+
+process (receiver \in P..N) {
+r0:
+  print << "here3" >>;
+r1:
+  while (TRUE) {
+    \* wait for jobs that need to be run
+    await availableJobs > 0;
+    lock(self);
+    save(self);
+    
+p2:
+    availableJobs := availableJobs + 1;
+    
+  }
+}
+
+} \* end algorithm
 *)
 
 
 \* BEGIN TRANSLATION
-VARIABLES b, box
+\* Label p2 of process producer at line 29 col 3 changed to p2_
+VARIABLES jobModCounts, savedModCounts, availableJobs, pc
 
-vars == << b, box >>
+vars == << jobModCounts, savedModCounts, availableJobs, pc >>
 
-ProcSet == {0} \cup {1}
+ProcSet == (1..P) \cup (P..N)
 
 Init == (* Global variables *)
-        /\ b = 0
-        /\ box = <<>>
+        /\ jobModCounts = {0 : x \in 1..N}
+        /\ savedModCounts = {0 : x \in 1..N}
+        /\ availableJobs = 0
+        /\ pc = [self \in ProcSet |-> CASE self \in 1..P -> "p1"
+                                        [] self \in P..N -> "r0"]
 
-Producer == /\ b = 0
-            /\ box' = Put(box)
-            /\ b' = 1
+p1(self) == /\ pc[self] = "p1"
+            /\ PrintT(<< "here" >>)
+            /\ pc' = [pc EXCEPT ![self] = "p2_"]
+            /\ UNCHANGED << jobModCounts, savedModCounts, availableJobs >>
 
-Consumer == /\ b = 1
-            /\ box' = Get(box)
-            /\ b' = 0
+p2_(self) == /\ pc[self] = "p2_"
+             /\ availableJobs < N
+             /\ pc' = [pc EXCEPT ![self] = "p3"]
+             /\ UNCHANGED << jobModCounts, savedModCounts, availableJobs >>
 
-Next == Producer \/ Consumer
+p3(self) == /\ pc[self] = "p3"
+            /\ savedModCounts' = [savedModCounts EXCEPT ![self] = 0]
+            /\ jobModCounts' = [jobModCounts EXCEPT ![self] = 0]
+            /\ pc' = [pc EXCEPT ![self] = "p4"]
+            /\ UNCHANGED availableJobs
 
-Spec == /\ Init /\ [][Next]_vars
-        /\ WF_vars(Consumer)
+p4(self) == /\ pc[self] = "p4"
+            /\ availableJobs' = availableJobs - 1
+            /\ pc' = [pc EXCEPT ![self] = "p2_"]
+            /\ UNCHANGED << jobModCounts, savedModCounts >>
+
+producer(self) == p1(self) \/ p2_(self) \/ p3(self) \/ p4(self)
+
+r0(self) == /\ pc[self] = "r0"
+            /\ PrintT(<< "here3" >>)
+            /\ pc' = [pc EXCEPT ![self] = "r1"]
+            /\ UNCHANGED << jobModCounts, savedModCounts, availableJobs >>
+
+r1(self) == /\ pc[self] = "r1"
+            /\ availableJobs > 0
+            /\ jobModCounts' = [jobModCounts EXCEPT ![self] = jobModCounts[self] + 1]
+            /\ Assert(savedModCounts[self] \in <<jobModCounts'[self], jobModCounts'[self] - 1>>, 
+                      "Failure of assertion at line 16, column 5 of macro called at line 46, column 5.")
+            /\ savedModCounts' = [savedModCounts EXCEPT ![self] = jobModCounts'[self]]
+            /\ pc' = [pc EXCEPT ![self] = "p2"]
+            /\ UNCHANGED availableJobs
+
+p2(self) == /\ pc[self] = "p2"
+            /\ availableJobs' = availableJobs + 1
+            /\ pc' = [pc EXCEPT ![self] = "r1"]
+            /\ UNCHANGED << jobModCounts, savedModCounts >>
+
+receiver(self) == r0(self) \/ r1(self) \/ p2(self)
+
+(* Allow infinite stuttering to prevent deadlock on termination. *)
+Terminating == /\ \A self \in ProcSet: pc[self] = "Done"
+               /\ UNCHANGED vars
+
+Next == (\E self \in 1..P: producer(self))
+           \/ (\E self \in P..N: receiver(self))
+           \/ Terminating
+
+Spec == Init /\ [][Next]_vars
+
+Termination == <>(\A self \in ProcSet: pc[self] = "Done")
 
 \* END TRANSLATION
 =============================================================================
 \* Modification History
-\* Last modified Fri Oct 25 07:21:52 EDT 2019 by guo
+\* Last modified Fri Oct 25 07:30:48 EDT 2019 by guo
 \* Created Fri Oct 25 03:25:07 EDT 2019 by guo

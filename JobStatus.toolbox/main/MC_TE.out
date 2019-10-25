@@ -2,7 +2,7 @@
 TLC2 Version 2.14 of 10 July 2019
 @!@!@ENDMSG 2262 @!@!@
 @!@!@STARTMSG 2187:0 @!@!@
-Running breadth-first search Model-Checking with fp 31 and seed 640514765652515975 with 3 workers on 6 cores with 2428MB heap and 5460MB offheap memory [pid: 7496] (Mac OS X 10.15 x86_64, AdoptOpenJDK 11.0.3 x86_64, OffHeapDiskFPSet, DiskStateQueue).
+Running breadth-first search Model-Checking with fp 130 and seed -3615973042527093650 with 3 workers on 6 cores with 2428MB heap and 5460MB offheap memory [pid: 7750] (Mac OS X 10.15 x86_64, AdoptOpenJDK 11.0.3 x86_64, OffHeapDiskFPSet, DiskStateQueue).
 @!@!@ENDMSG 2187 @!@!@
 @!@!@STARTMSG 2220:0 @!@!@
 Starting SANY...
@@ -12,87 +12,251 @@ Parsing file /Users/guo/amboy-tla/JobStatus.toolbox/main/jobstatus.tla
 Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.201907102009/tla2sany/StandardModules/TLC.tla
 Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.201907102009/tla2sany/StandardModules/Naturals.tla
 Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.201907102009/tla2sany/StandardModules/Sequences.tla
-Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.201907102009/tla2sany/StandardModules/Integers.tla
 Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.201907102009/tla2sany/StandardModules/FiniteSets.tla
 Semantic processing of module Naturals
 Semantic processing of module Sequences
 Semantic processing of module FiniteSets
 Semantic processing of module TLC
-Semantic processing of module Integers
 Semantic processing of module jobstatus
 Semantic processing of module MC
 @!@!@STARTMSG 2219:0 @!@!@
 SANY finished.
 @!@!@ENDMSG 2219 @!@!@
 @!@!@STARTMSG 2185:0 @!@!@
-Starting... (2019-10-25 07:23:05)
+Starting... (2019-10-25 07:30:53)
 @!@!@ENDMSG 2185 @!@!@
 @!@!@STARTMSG 2189:0 @!@!@
 Computing initial states...
 @!@!@ENDMSG 2189 @!@!@
 @!@!@STARTMSG 2190:0 @!@!@
-Finished computing initial states: 1 distinct state generated at 2019-10-25 07:23:06.
+Finished computing initial states: 1 distinct state generated at 2019-10-25 07:30:54.
 @!@!@ENDMSG 2190 @!@!@
-@!@!@STARTMSG 2193:0 @!@!@
-Model checking completed. No error has been found.
-  Estimates of the probability that TLC did not check all reachable states
-  because two distinct states had the same fingerprint:
-  calculated (optimistic):  val = 1.1E-19
-@!@!@ENDMSG 2193 @!@!@
+<<"here">>
+<<"here">>
+<<"here">>
+<<"here">>
+<<"here3">>
+<<"here">>
+<<"here">>
+<<"here3">>
+<<"here">>
+<<"here3">>
+<<"here">>
+<<"here3">>
+<<"here">>
+<<"here3">>
+<<"here3">>
+<<"here3">>
+<<"here3">>
+@!@!@STARTMSG 1000:1 @!@!@
+TLC threw an unexpected exception.
+This was probably caused by an error in the spec or model.
+See the User Output or TLC Console for clues to what happened.
+The exception was a java.lang.RuntimeException
+: Attempted to apply EXCEPT construct to the value {0}.
+@!@!@ENDMSG 1000 @!@!@
+<<"here">>
+<<"here">>
+<<"here3">>
+<<"here3">>
+<<"here">>
+<<"here">>
+<<"here">>
+<<"here">>
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+<<"here3">>
+<<"here">>
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ jobModCounts = {0}
+/\ savedModCounts = {0}
+/\ availableJobs = 0
+/\ pc = <<"p1", "p1", "p1", "r0", "r0">>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <p1 line 73, col 13 to line 76, col 74 of module jobstatus>
+/\ jobModCounts = {0}
+/\ savedModCounts = {0}
+/\ availableJobs = 0
+/\ pc = <<"p2_", "p1", "p1", "r0", "r0">>
+
+@!@!@ENDMSG 2217 @!@!@
+<<"here3">>
+@!@!@STARTMSG 2217:4 @!@!@
+3: <p2_ line 78, col 14 to line 81, col 75 of module jobstatus>
+/\ jobModCounts = {0}
+/\ savedModCounts = {0}
+/\ availableJobs = 0
+/\ pc = <<"p3", "p1", "p1", "r0", "r0">>
+
+@!@!@ENDMSG 2217 @!@!@
+<<"here3">>
+@!@!@STARTMSG 2103:1 @!@!@
+The error occurred when TLC was evaluating the nested
+expressions at the following positions:
+0. Line 83, column 13 to line 87, column 38 in jobstatus
+1. Line 83, column 16 to line 83, column 30 in jobstatus
+2. Line 84, column 16 to line 84, column 68 in jobstatus
+3. Line 84, column 34 to line 84, column 68 in jobstatus
+
+
+@!@!@ENDMSG 2103 @!@!@
 @!@!@STARTMSG 2201:0 @!@!@
-The coverage statistics at 2019-10-25 07:23:06
+The coverage statistics at 2019-10-25 07:30:54
 @!@!@ENDMSG 2201 @!@!@
 @!@!@STARTMSG 2773:0 @!@!@
-<Init line 52, col 1 to line 52, col 4 of module jobstatus>: 1:1
+<Init line 66, col 1 to line 66, col 4 of module jobstatus>: 2:2
 @!@!@ENDMSG 2773 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  line 53, col 9 to line 54, col 21 of module jobstatus: 1
+  line 67, col 9 to line 71, col 65 of module jobstatus: 2
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2772:0 @!@!@
-<Producer line 56, col 1 to line 56, col 8 of module jobstatus>: 1:1
+<p1 line 73, col 1 to line 73, col 8 of module jobstatus>: 7:16
 @!@!@ENDMSG 2772 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  line 56, col 16 to line 56, col 20 of module jobstatus: 3
+  line 73, col 16 to line 73, col 30 of module jobstatus: 43
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  |line 56, col 16 to line 56, col 16 of module jobstatus: 2
+  |line 73, col 16 to line 73, col 23 of module jobstatus: 27
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  line 57, col 16 to line 57, col 30 of module jobstatus: 1
+  line 74, col 16 to line 74, col 35 of module jobstatus: 16
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  line 58, col 16 to line 58, col 21 of module jobstatus: 1
+  line 75, col 16 to line 75, col 48 of module jobstatus: 16
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 76, col 16 to line 76, col 74 of module jobstatus: 16
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2772:0 @!@!@
-<Consumer line 60, col 1 to line 60, col 8 of module jobstatus>: 0:1
+<p2_ line 78, col 1 to line 78, col 9 of module jobstatus>: 7:8
 @!@!@ENDMSG 2772 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  line 60, col 16 to line 60, col 20 of module jobstatus: 3
+  line 78, col 17 to line 78, col 32 of module jobstatus: 34
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  |line 60, col 16 to line 60, col 16 of module jobstatus: 2
+  |line 78, col 17 to line 78, col 24 of module jobstatus: 26
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  line 61, col 16 to line 61, col 30 of module jobstatus: 1
+  line 79, col 17 to line 79, col 33 of module jobstatus: 8
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  line 62, col 16 to line 62, col 21 of module jobstatus: 1
+  line 80, col 17 to line 80, col 48 of module jobstatus: 8
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 81, col 17 to line 81, col 75 of module jobstatus: 8
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<p3 line 83, col 1 to line 83, col 8 of module jobstatus>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 83, col 16 to line 83, col 30 of module jobstatus: 25
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 84, col 16 to line 84, col 68 of module jobstatus: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 84, col 34 to line 84, col 68 of module jobstatus: 3
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 85, col 16 to line 85, col 64 of module jobstatus: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 86, col 16 to line 86, col 47 of module jobstatus: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 87, col 16 to line 87, col 38 of module jobstatus: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<p4 line 89, col 1 to line 89, col 8 of module jobstatus>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 89, col 16 to line 89, col 30 of module jobstatus: 22
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 90, col 16 to line 90, col 49 of module jobstatus: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 91, col 16 to line 91, col 48 of module jobstatus: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 92, col 16 to line 92, col 59 of module jobstatus: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<r0 line 96, col 1 to line 96, col 8 of module jobstatus>: 13:13
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 96, col 16 to line 96, col 30 of module jobstatus: 34
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 96, col 16 to line 96, col 23 of module jobstatus: 21
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 97, col 16 to line 97, col 36 of module jobstatus: 13
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 98, col 16 to line 98, col 47 of module jobstatus: 13
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 99, col 16 to line 99, col 74 of module jobstatus: 13
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<r1 line 101, col 1 to line 101, col 8 of module jobstatus>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 101, col 16 to line 101, col 30 of module jobstatus: 21
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 102, col 16 to line 102, col 32 of module jobstatus: 1
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 103, col 16 to line 103, col 85 of module jobstatus: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 106, col 16 to line 106, col 86 of module jobstatus: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 107, col 16 to line 107, col 47 of module jobstatus: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 108, col 16 to line 108, col 38 of module jobstatus: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<p2 line 110, col 1 to line 110, col 8 of module jobstatus>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 110, col 16 to line 110, col 30 of module jobstatus: 21
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 111, col 16 to line 111, col 49 of module jobstatus: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 112, col 16 to line 112, col 47 of module jobstatus: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 113, col 16 to line 113, col 59 of module jobstatus: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Terminating line 118, col 1 to line 118, col 11 of module jobstatus>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 118, col 19 to line 118, col 56 of module jobstatus: 7
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 119, col 19 to line 119, col 32 of module jobstatus: 0
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2202:0 @!@!@
 End of statistics.
 @!@!@ENDMSG 2202 @!@!@
 @!@!@STARTMSG 2200:0 @!@!@
-Progress(2) at 2019-10-25 07:23:06: 3 states generated (185 s/min), 2 distinct states found (123 ds/min), 0 states left on queue.
+Progress(4) at 2019-10-25 07:30:54: 36 states generated (1,595 s/min), 28 distinct states found (1,240 ds/min), 19 states left on queue.
 @!@!@ENDMSG 2200 @!@!@
 @!@!@STARTMSG 2199:0 @!@!@
-3 states generated, 2 distinct states found, 0 states left on queue.
+36 states generated, 28 distinct states found, 19 states left on queue.
 @!@!@ENDMSG 2199 @!@!@
-@!@!@STARTMSG 2194:0 @!@!@
-The depth of the complete state graph search is 2.
-@!@!@ENDMSG 2194 @!@!@
-@!@!@STARTMSG 2268:0 @!@!@
-The average outdegree of the complete state graph is 1 (minimum is 0, the maximum 1 and the 95th percentile is 1).
-@!@!@ENDMSG 2268 @!@!@
 @!@!@STARTMSG 2186:0 @!@!@
-Finished in 975ms at (2019-10-25 07:23:06)
+Finished in 1357ms at (2019-10-25 07:30:54)
 @!@!@ENDMSG 2186 @!@!@
